@@ -81,14 +81,20 @@ def get_profile(uid):
     return f"Профиль пользователя: {first_name} {last_name}"
 # КОНЕЦ ИСХОДНОГО КОДА.
 
+@pytest.fixture
 def test_objects():
-    # TODO пишем фикстуру, имитирующую бд с данными
-    pass
+    u1 = User(id=1, first_name='Иван', last_name='Иванович', email='vanya@skypro.com')
+    u2 = User(id=2, first_name='Петр', last_name='Петрович', email='petya@skypro.com')
+    u3 = User(id=3, first_name='Тест', last_name='Тестович', email='testya@skypro.com')
+    return {1: u1, 2: u2, 3: u3}
 
 @pytest.fixture
 def user(test_objects):
-    # TODO пишем фикстуру, имитирующую модель пользователя
-    pass
+    user = User
+    user.query = MagicMock()
+    user.query.all = MagicMock(return_value=test_objects.values())
+    user.query.get = MagicMock(side_effect=test_objects.get)
+    return user
 
 # Не изменяйте пожалуйста эти тесты. 
 # Если вы правильно сделаете фикстуры, они завершатся успешно.

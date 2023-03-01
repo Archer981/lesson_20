@@ -30,12 +30,16 @@ def divider(a, b):
 
 
 def test_summer():
-    # TODO Напишите Ваши тесты здесь
-    pass
+    assert type(summer(1, 2, 3)) == int
+    assert type(summer(3)) == str
+    assert type(summer(299, 6)) == str
+    assert type(summer('qw')) == str
 
 def test_divider():
-    # TODO Напишите Ваши тесты здесь
-    pass
+    assert type(divider(100, 50)) == float
+    assert type(divider(3, 0)) == str
+    assert type(divider(299, 0)) == str
+    assert type(divider(5, 'qw')) == str
 
 
 # Имитируем команду pytest при запуске модуля

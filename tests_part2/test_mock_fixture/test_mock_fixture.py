@@ -14,6 +14,7 @@
 import requests
 import os
 import pytest
+from unittest.mock import MagicMock
 
 # Класс, подлежащий тестированию
 class AddressGetter:
@@ -38,8 +39,9 @@ class AddressGetter:
 
 @pytest.fixture
 def addressgetter():
-    # TODO напишите фикстуру здесь
-    pass
+    addressgetter = AddressGetter()
+    addressgetter.get_cities = MagicMock(return_value=["Санкт-Петербург", "Самара", "Краснодар"])
+    return addressgetter
 
 # Тесты уже готовы, Здесь ничего менять не нужно. 
 # Если они сработали, значит фикстура сделана правильно

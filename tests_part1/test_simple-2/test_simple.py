@@ -31,16 +31,13 @@ def divider(a, b):
     return a / b
 
 def test_result():
-    # TODO напишите простой тест здесь
-    pass
+    assert divider(100, 50) == 2
 
 def test_zero_divide_error():
-    # TODO напишите простой тест здесь
-    pass
+    assert divider(3, 0) == 'Делить на ноль нельзя'
 
 def test_error():
-    # TODO напишите простой тест здесь
-    pass
+    assert divider(4, 'h') == 'ОШИБКА'
 
 
 

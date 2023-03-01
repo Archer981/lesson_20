@@ -15,6 +15,8 @@
 #
 import os
 
+import pytest
+
 test_list = [25, '16', '31', 9, 7, 6, '21', 13, 5,
              1, '1', '1', 1, 1, 1, '2', 4, 5,
              27, '4', '5', 9, 7, 6, '17', 13, 5,
@@ -31,10 +33,9 @@ def summer(*args):
         return "Большое число"
     return sum(args)
 
-
-def list_creator():
-    # TODO Напишите фикстуру здесь
-    pass
+@pytest.fixture
+def list_creater():
+    return map(int, test_list)
 
 # Не меняйте код ниже. Для запуска теста запустите текущий модуль,
 # и если он завершиться без ошибок, то задание решено верно!

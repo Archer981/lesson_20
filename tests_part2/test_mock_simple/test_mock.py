@@ -23,9 +23,10 @@
 #      в качестве аргумента, используйте пожалуйста список: 
 #      ["Санкт-Петербург", "Самара", "Краснодар"], это необходимо для проверки.
 #    - вызовите метод в теле функции show_cities и проверьте ожидаемый результат
-
+import pytest
 import requests
 import os
+from unittest.mock import MagicMock
 
 class AddressGetter:
     def get_cities(city):
@@ -38,10 +39,16 @@ class AddressGetter:
         return f"Расположение офисов: {cities}."
 
 
-def test_show_cities():
+@pytest.fixture
+def address_getter():
     addressgetter = AddressGetter()
-    # TODO Попробуйте мокнуть нужный метод здесь
-    assert addressgetter.show_cities() == "Расположение офисов: Санкт-Петербург, Самара, Краснодар."
+    addressgetter.get_cities = MagicMock(return_value=["Санкт-Петербург", "Самара", "Краснодар"])
+    return addressgetter
+
+
+def test_show_cities(address_getter):
+    assert address_getter.show_cities() == "Расположение офисов: Санкт-Петербург, Самара, Краснодар."
+
 
 if __name__=="__main__":
     os.system("pytest")

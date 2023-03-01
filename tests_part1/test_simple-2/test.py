@@ -15,7 +15,7 @@ from ttools.skyprotests.tests import SkyproTestCase  # noqa: E402
 def error_check_divider(*args):
     for arg in args:
         if not isinstance(arg, int):
-            return "ОШБКА"
+            return "ОШИБКА"
 
 def wrong_result_divider(a , b):
     return a / b + 1
